@@ -1,0 +1,8 @@
+.stack-work/
+*~
+stack.yaml.lock
+dist-newstyle/*
+.gitattributes
+template.hs
+newDay.sh
+.ghci
