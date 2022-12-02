@@ -35,7 +35,8 @@ module Util
     showAnimation,
     dijkstra,
     genericBfs,
-    astar
+    astar,
+    swap
   ) where
 
 import Codec.Picture
@@ -249,3 +250,5 @@ showAnimation strs = forM_ strs $ \str -> do
   clearScreen
   putStr str
   threadDelay 1000000
+
+swap (a, b) = (b, a)
