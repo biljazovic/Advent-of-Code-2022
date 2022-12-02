@@ -7,7 +7,7 @@ import qualified Data.Map as Map
 data RPS = R | P | S deriving (Ord, Eq)
 
 fromCharL :: Map Char RPS
-fromCharL = Map.fromList $ [ ('A',R),('X',R),('B',P),('Y',P),('C',S),('Z',S) ]
+fromCharL = Map.fromList [ ('A',R),('X',R),('B',P),('Y',P),('C',S),('Z',S) ]
 
 fromChar :: Char -> RPS
 fromChar = (Map.!) fromCharL
@@ -37,5 +37,5 @@ main02 :: IO ()
 main02 = do
     input <- map (map head . splitOn " ") . filter (not . emptyLine) . lines <$> readFile "res/input02"
     print $ solveA $ map ((\[a,b] -> (a, b)) . map fromChar) input
-    print $ solveA $ map (\[a,b] -> (fromChar a, solveB (fromChar a) b)) $ input
+    print $ solveA $ map (\[fromChar->a, b] -> (a, solveB a b)) input
 
