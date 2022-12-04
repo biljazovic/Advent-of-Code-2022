@@ -5,13 +5,13 @@ import Data.Char (ord, isAsciiLower, isAsciiUpper)
 
 
 priority :: Char -> Int
-priority c 
+priority c
   | isAsciiLower c = ord c - ord 'a' + 1
   | isAsciiUpper c = ord c - ord 'A' + 1 + 26
 
 groupByn :: Int -> [a] -> [[a]]
 groupByn _ [] = []
-groupByn n l = (take n l) : groupByn n (drop n l)
+groupByn n l = take n l : groupByn n (drop n l)
 
 -- $> main03
 main03 :: IO ()
