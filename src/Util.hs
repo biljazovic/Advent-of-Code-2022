@@ -36,7 +36,8 @@ module Util
     dijkstra,
     genericBfs,
     astar,
-    swap
+    swap,
+    groupByn
   ) where
 
 import Codec.Picture
@@ -252,3 +253,8 @@ showAnimation strs = forM_ strs $ \str -> do
   threadDelay 1000000
 
 swap (a, b) = (b, a)
+
+groupByn :: Int -> [a] -> [[a]]
+groupByn _ [] = []
+groupByn n l = take n l : groupByn n (drop n l)
+
