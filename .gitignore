@@ -6,3 +6,4 @@ dist-newstyle/*
 template.hs
 newDay.sh
 .ghci
+res/
