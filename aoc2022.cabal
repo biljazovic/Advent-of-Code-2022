@@ -22,6 +22,7 @@ library
       Day06
       Day07
       Day08
+      Day09
       Util
   other-modules:
       Paths_aoc2022
