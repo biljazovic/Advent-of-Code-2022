@@ -58,7 +58,7 @@ import qualified Data.Set as Set
 import Data.Void (Void)
 import Linear.V2
 import Text.Megaparsec (MonadParsec, try, many)
-import Text.ParserCombinators.ReadP (ReadP)
+import Text.ParserCombinators.ReadP (ReadP, option, char, string)
 import qualified Text.ParserCombinators.ReadP as ReadP
 import Data.Functor (($>))
 import qualified Data.IntMap.Strict as IntMap
@@ -79,7 +79,8 @@ newline :: ReadP ()
 newline = ReadP.char '\n' $> ()
 
 parseInt :: ReadP Int
-parseInt = read <$> ReadP.munch1 (`elem` ['0'..'9'])
+parseInt = do
+  read <$> ((++) <$> option "" (string "-") <*> ReadP.munch1 (`elem` ['0'..'9']))
 
 type CharMatrix = Array (V2 Int) Char
 
