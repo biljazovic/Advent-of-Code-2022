@@ -26,9 +26,7 @@ solveB :: [Command] -> String
 solveB cmds = intercalate "\n" (groupByn 40 rawOut)
   where
     rawOut = map f [0..6*40-1]
-    f i = let i' = i `mod` 40
-              s = hist !! i
-           in if abs (i'-s) <= 1 then '#' else '.'
+    f i = if abs (i `mod` 40 - hist !! i) <= 1 then '#' else '.'
     hist = reverse . _hist $ foldl (flip exeCmd) initialState cmds
 
 main10 :: IO ()

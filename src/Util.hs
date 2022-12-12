@@ -102,8 +102,8 @@ parseMatrix strToParse =
 sepBy1_ :: MonadParsec e s m => m a -> m sep -> m [a]
 sepBy1_ p sep = (:) <$> try p <*> many (try (sep *> p))
 
-dijkstra :: (Eq a, Hashable a) => a -> (a -> Bool) -> (a -> [(a, Int)]) -> Maybe Int
-dijkstra start goal neigh = go HashSet.empty (HashMap.singleton start 0) (PQ.singleton 0 start)
+dijkstra :: (Eq a, Hashable a) => [a] -> (a -> Bool) -> (a -> [(a, Int)]) -> Maybe Int
+dijkstra start goal neigh = go HashSet.empty (HashMap.fromList $ map (, 0) start) (PQ.fromList $ map (0, ) start)
   where
     go seen dists queue = do
       ((curDist, cur), rest) <- PQ.minViewWithKey queue
