@@ -9,11 +9,11 @@ fix = \case
   c   -> c
 
 solve :: (Char -> Bool) -> CharMatrix -> Maybe Int
-solve startTest mat = dijkstra start goal neigh
+solve startTest mat = genericBfs goal neigh start
   where
     goal = (== 'E') . (mat Arr.!)
     start = map fst . filter (startTest . snd) $ Arr.assocs mat
-    neigh p = map (,1) $ filter (good p) (susedi4 (Just $ Arr.bounds mat) p)
+    neigh p = filter (good p) (susedi4 (Just $ Arr.bounds mat) p)
     good p p' = fix (mat Arr.! p') <= succ (fix $ mat Arr.! p)
 
 main12 :: IO ()

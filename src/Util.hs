@@ -102,26 +102,12 @@ parseMatrix strToParse =
 sepBy1_ :: MonadParsec e s m => m a -> m sep -> m [a]
 sepBy1_ p sep = (:) <$> try p <*> many (try (sep *> p))
 
-dijkstra :: (Eq a, Hashable a) => [a] -> (a -> Bool) -> (a -> [(a, Int)]) -> Maybe Int
-dijkstra start goal neigh = go HashSet.empty (HashMap.fromList $ map (, 0) start) (PQ.fromList $ map (0, ) start)
-  where
-    go seen dists queue = do
-      ((curDist, cur), rest) <- PQ.minViewWithKey queue
-      if | HashSet.member cur seen -> go seen dists rest
-         | goal cur -> Just curDist
-         | otherwise -> let neighs = neigh cur
-                            newSeen = HashSet.insert cur seen
-                            f (other, toOther) = let newDist = curDist + toOther
-                              in if all (> newDist) $ maybeToList (dists HashMap.!? other)
-                                    then Just (other, newDist)
-                                    else Nothing
-                            forAdd = mapMaybe f neighs
-                            newDists = foldr (\(x, d) m -> HashMap.insert x d m) dists forAdd
-                            newQ = foldr (\(x, d) q -> PQ.insert d x q) rest forAdd
-                         in go newSeen newDists newQ
 
-astar :: (Eq a, Hashable a) => a -> (a -> Bool) -> (a -> [(a, Int)]) -> (a -> Int) -> Maybe Int
-astar start goal neigh heuristic = go HashSet.empty (HashMap.singleton start 0) (PQ.singleton (heuristic start) start)
+dijkstra :: (Eq a, Hashable a) => [a] -> (a -> Bool) -> (a -> [(a, Int)]) -> Maybe Int
+dijkstra = astar (const 0)
+
+astar :: (Eq a, Hashable a) =>  (a -> Int) -> [a] -> (a -> Bool) -> (a -> [(a, Int)]) -> Maybe Int
+astar heuristic start goal neigh = go HashSet.empty (HashMap.fromList $ map (, 0) start) (PQ.fromList $ map (0, ) start)
   where
     go seen dists queue = do
       ((curDist, cur), rest) <- PQ.minViewWithKey queue
@@ -142,9 +128,9 @@ genericBfs ::
   Ord a =>
   (a -> Bool) -> -- goal
   (a -> [a]) -> -- neighbors
-  a -> -- start
+  [a] -> -- start
   Maybe Int -- distance from start to goal
-genericBfs goal neighs start = bfs (Set.singleton start) (Seq.singleton (start, 0))
+genericBfs goal neighs start = bfs (Set.fromList start) (Seq.fromList $ map (, 0) start)
   where
     bfs seen queue = case queue of
       (Seq.viewl -> (cur, dist) Seq.:< rest) ->
