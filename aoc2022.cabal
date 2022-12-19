@@ -29,6 +29,9 @@ library
       Day13
       Day14
       Day15
+      Day16
+      Day17
+      Day18
       Util
   other-modules:
       Paths_aoc2022
@@ -70,6 +73,7 @@ library
     , pqueue
     , random
     , random-shuffle
+    , raw-strings-qq
     , scanf
     , split
     , string-qq
@@ -119,6 +123,7 @@ executable aoc2022
     , pqueue
     , random
     , random-shuffle
+    , raw-strings-qq
     , scanf
     , split
     , string-qq

@@ -37,6 +37,7 @@ dependencies:
 - string-qq
 - ansi-terminal
 - random-shuffle
+- raw-strings-qq
 
 ghc-options:
 - -Wall

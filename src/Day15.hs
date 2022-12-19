@@ -11,6 +11,9 @@ parsePoss = mapMaybe $ \str -> do
 
 sY = 2000000
 
+type Seg = (Int, Int)
+
+segment :: Int -> (V2 Int, V2 Int) -> Maybe Seg
 segment y (V2 xs ys, V2 xb yb) =
   let razy = abs (ys - y)
       dist = abs (xs - xb) + abs (ys - yb)
@@ -18,8 +21,6 @@ segment y (V2 xs ys, V2 xb yb) =
    in if razy > dist
          then Nothing
          else Just (xs - razx, xs + razx)
-
-type Seg = (Int, Int)
 
 addSeg :: Seg -> [Seg] -> [Seg]
 addSeg seg [] = [seg]

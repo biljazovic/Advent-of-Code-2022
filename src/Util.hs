@@ -37,7 +37,9 @@ module Util
     genericBfs,
     astar,
     swap,
-    groupByn
+    groupByn,
+    space,
+    trim
   ) where
 
 import Codec.Picture
@@ -58,7 +60,7 @@ import qualified Data.Set as Set
 import Data.Void (Void)
 import Linear.V2
 import Text.Megaparsec (MonadParsec, try, many)
-import Text.ParserCombinators.ReadP (ReadP, option, char, string)
+import Text.ParserCombinators.ReadP (ReadP, option, char, string, many1)
 import qualified Text.ParserCombinators.ReadP as ReadP
 import Data.Functor (($>))
 import qualified Data.IntMap.Strict as IntMap
@@ -74,6 +76,12 @@ import Data.Hashable (Hashable)
 import System.Console.ANSI
 import Control.Concurrent (threadDelay)
 import qualified Data.Sequence as Seq
+
+trim :: String -> String
+trim = dropWhileEnd isSpace . dropWhile isSpace
+
+space :: ReadP ()
+space = many1 (char ' ') $> ()
 
 newline :: ReadP ()
 newline = ReadP.char '\n' $> ()
