@@ -32,6 +32,9 @@ library
       Day16
       Day17
       Day18
+      Day19
+      Day20
+      Day21
       Util
   other-modules:
       Paths_aoc2022
@@ -50,6 +53,7 @@ library
   ghc-options: -Wall -Wno-incomplete-patterns -Wno-unused-do-bind -Wno-missing-signatures -O2 -threaded -with-rtsopts=-N
   build-depends:
       JuicyPixels
+    , MemoTrie
     , ansi-terminal
     , arithmoi
     , array
@@ -60,6 +64,7 @@ library
     , fgl
     , fixed-vector
     , gloss
+    , glpk-hs
     , hashable
     , lens
     , linear
@@ -71,6 +76,7 @@ library
     , multiset
     , parser-combinators
     , pqueue
+    , process
     , random
     , random-shuffle
     , raw-strings-qq
@@ -99,6 +105,7 @@ executable aoc2022
   ghc-options: -Wall -Wno-incomplete-patterns -Wno-unused-do-bind -Wno-missing-signatures -O2 -threaded -with-rtsopts=-N
   build-depends:
       JuicyPixels
+    , MemoTrie
     , ansi-terminal
     , aoc2022
     , arithmoi
@@ -110,6 +117,7 @@ executable aoc2022
     , fgl
     , fixed-vector
     , gloss
+    , glpk-hs
     , hashable
     , lens
     , linear
@@ -121,6 +129,7 @@ executable aoc2022
     , multiset
     , parser-combinators
     , pqueue
+    , process
     , random
     , random-shuffle
     , raw-strings-qq

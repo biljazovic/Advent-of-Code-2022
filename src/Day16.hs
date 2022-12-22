@@ -42,6 +42,7 @@ solve input = go' 30 0 0
              then 0
              else maximum (rez1 ++ rez2)
 
+-- doesn't work when go' is outside TODO try to use memotrie instead of memoize
 solveB input = maximum $ flip map [0..fullMask] $ \mask -> go' 26 0 mask + go' 26 0 (fullMask - mask) 
   where
     fullMask = (1 `shiftL` (length rs - 1)) - 1 :: Word16

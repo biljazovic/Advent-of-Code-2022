@@ -38,6 +38,9 @@ dependencies:
 - ansi-terminal
 - random-shuffle
 - raw-strings-qq
+- MemoTrie
+- glpk-hs
+- process
 
 ghc-options:
 - -Wall

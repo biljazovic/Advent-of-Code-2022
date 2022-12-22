@@ -42,6 +42,9 @@ packages:
 
 extra-deps:
 - memoize-1.1.2@sha256:d7701b55ed63434d1e8b507d0a76bb58f2fe31b7ce329132e1ca808c7001da49,1928
+- glpk-hs-0.8@sha256:acebd2f8b452f197d4bec74678e8a3ce41eb02cb3cd77a051fb92829df9ffd6b,2616
+- gasp-1.3.0.0@sha256:f1acd6fb521dbeded3d7737449f7139fb67c02da1645b51bc3ab31740f0869cf,725
+
 
 # Override default flag values for local packages and extra-deps
 # flags: {}
