@@ -16,6 +16,7 @@ ores = ["ore", "clay", "obs", "geo"]
 ores_p = map (++ "_p") ores
 ores_pp = map (++ "p") ores_p
 
+-- TODO REFACTOR WITH https://hackage.haskell.org/package/hmatrix
 lp :: Int -> (Int, Int, Int, Int, Int, Int) -> LP (String, Int) Int
 lp time (ore_ore, clay_ore, obs_ore, obs_clay, geo_ore, geo_obs) = LP {
   direction = Max,

@@ -20,7 +20,7 @@ advance (V2 x1 y1, V2 x2 y2) mat = mat'
     mat' = Map.fromListWith (++) . concatMap f . Map.assocs $ mat
     f (pos, dirs) = map (g . (pos, )) dirs
     g (pos, dir) = 
-      let pos'@(V2 x' y') = pos + toDir dir
+      let V2 x' y' = pos + toDir dir
           pos'' = if | x' < x1 -> V2 x2 y'
                      | x' > x2 -> V2 x1 y'
                      | y' < y1 -> V2 x' y2
@@ -45,7 +45,7 @@ solveB input = l1 + l2 + l3
     endPos = snd bounds + V2 1 0
     startPos = fst bounds - V2 1 0
     bounds = (\(b1, b2) -> (b1+V2 1 1, b2-V2 1 1)) $ Arr.bounds input
-    matI = Map.fromList . filter (\(i,s) -> head s `notElem` "#.") . Arr.assocs . fmap (: []) $ input
+    matI = Map.fromList . filter (\(_,s) -> head s `notElem` "#.") . Arr.assocs . fmap (: []) $ input
 
 solve' :: V2 Int -> V2 Int -> Matrix -> (V2 Int, V2 Int) -> (Matrix, Int)
 solve' startPos endPos matI bounds = go (Set.singleton startPos) matI

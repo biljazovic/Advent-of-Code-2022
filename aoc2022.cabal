@@ -6,9 +6,6 @@ cabal-version: 1.12
 
 name:           aoc2022
 version:        0.1.0.0
-author:         Bruno Iljazovic
-maintainer:     bruno.iljazovic@gmail.com
-copyright:      2021 Bruno Iljazovic
 license:        BSD3
 build-type:     Simple
 

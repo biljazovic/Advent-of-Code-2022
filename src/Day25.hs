@@ -8,7 +8,7 @@ fromCh = \case
   '=' -> -2
 
 fromSnafu :: String -> Integer
-fromSnafu str = foldl (\s c -> 5*s + fromCh c) 0 str
+fromSnafu = foldl (\s c -> 5*s + fromCh c) 0
 
 toSnafu :: Integer -> String
 toSnafu num = reverse $ go num
